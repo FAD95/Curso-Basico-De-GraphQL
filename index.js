@@ -2,25 +2,18 @@
 
 const express = require('express')
 const { graphqlHTTP } = require('express-graphql')
-const { graphql, buildSchema } = require('graphql')
+const { buildSchema } = require('graphql')
+const { readFileSync } = require('fs')
+const { join } = require('path')
+const resolvers = require('./lib/resolvers')
 
 const app = express()
 const port = process.env.PORT || 3000
 
 // definimos el esquema
-const schema = buildSchema(`
-    type Query {
-        hello: String
-    }
-`)
-
-// Configurar los resolvers
-const resolvers = {
-  hello: () => {
-    return 'hello world'
-  },
-
-}
+const schema = buildSchema(
+  readFileSync(join(__dirname, 'lib', 'schema.graphql'), 'utf-8')
+)
 
 app.use(
   '/api',
