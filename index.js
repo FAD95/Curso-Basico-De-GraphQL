@@ -1,5 +1,6 @@
 'use strict'
 
+require('dotenv').config()
 const express = require('express')
 const { graphqlHTTP } = require('express-graphql')
 const { makeExecutableSchema } = require('graphql-tools')
@@ -12,9 +13,7 @@ const port = process.env.PORT || 3000
 
 // definimos el esquema
 const typeDefs = readFileSync(join(__dirname, 'lib', 'schema.graphql'), 'utf-8')
-const schema = makeExecutableSchema({typeDefs, resolvers})
-  
-
+const schema = makeExecutableSchema({ typeDefs, resolvers })
 
 app.use(
   '/api',
