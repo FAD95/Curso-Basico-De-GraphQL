@@ -48,11 +48,22 @@ input StudentEditInput {
 
 type Mutation {
   "Crea un curso"
+  # El primer parametro especifica lo que se requiere para ejecutar la acción
+  # EL segundo parametro es el tipo de elemento que se retornara
   createCourse(input: CourseInput!): Course
+
   "Edita un curso"
   editCourse(_id: ID!, input: CourseEditInput): Course
+
+  "Elimina un curso"
+  deleteCourse(_id: ID!): String
+
   "Crea un estudiante"
   createStudent(input: StudentInput!): Student
+
   "Edita un estudiante"
   editStudent(_id: ID!, input: StudentEditInput): Student
+
+   "Elimina un estudiante"
+  deleteStudent(_id: ID!): String
 }
